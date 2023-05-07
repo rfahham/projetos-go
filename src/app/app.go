@@ -1,9 +1,14 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
-	"os"
+	"io"
+	"io/ioutil"
 	"net/http"
+	"os"
+	"strconv"
+	"strings"
 	"time"
 )
 
@@ -26,6 +31,7 @@ func main() {
 			fmt.Println("")
 		case 2: 
 			fmt.Println("Exibindo Logs...")
+			imprimeLogs()
 		case 3:
 			fmt.Println("Saindo do programa")
 			os.Exit(0)
@@ -67,10 +73,12 @@ func monitoramento() {
 	fmt.Println("______________")
 	fmt.Println("")
 
-	sites := []string{
-		"https://report.apps.tsuru.gcp.i.globo",
-		"https://www.globo.com",
-	}
+	// sites := []string{
+	// 	"https://report.apps.tsuru.gcp.i.globo",
+	// 	"https://www.globo.com",
+	// }
+
+	sites := leArquivo()
 
 	for i := 0; i < vezes ; i++ {
 		fmt.Println("Tentativa:", i)
@@ -81,16 +89,91 @@ func monitoramento() {
 		time.Sleep(delay * time.Second)
 		fmt.Println("")
 	}
-
 }
 
 func testaSite(site string) {
-	resp, _ := http.Get(site)
+	resp, err := http.Get(site)
 	// fmt.Println(resp)
+
+	if err != nil {
+		fmt.Println("Ocorreu um erro na função testaSite: ", err)
+	}
 
 	if resp.StatusCode == 200 {
 		fmt.Println("Site", site, "foi carregado com sucesso!!!")
+		registraLog(site, true)
 	} else {
 		fmt.Println("Site", site, "não está respondendo, Status Code:", resp.StatusCode )
+		registraLog(site, false)
+
 	} 
+}
+
+func leArquivo() []string {
+
+	var sites []string
+
+	// Imprime o binário do arquivosites
+	// arquivoUrls, err := os.Open("urls.csv")
+
+	// Imprime o bloco do arquivo
+	// arquivoUrls, err := ioutil.ReadFile("sites.txt")
+
+	// Abre o arquivo para leitura
+	arquivoUrls, err := os.Open("sites.txt")
+
+	
+	if err != nil {
+		fmt.Println("Ocorreu um erro na função leArquivo: ", err)
+	}
+
+	leitor := bufio.NewReader(arquivoUrls)
+
+	for {	// Delimitador da linha, quebra de linha
+		
+		linha, err := leitor.ReadString('\n')
+		linha = strings.TrimSpace(linha)
+		
+		// fmt.Println(string(linha))
+
+		sites = append(sites, linha)
+		
+		// Tratando erros
+		
+		// if err != nil {
+		// 	fmt.Println("Ocorreu um erro ao ler a linha: ", err)
+		// }
+
+		if err == io.EOF {
+			break
+		}
+
+	}
+	
+	// Fecha o arquivo para leitura
+	arquivoUrls.Close()
+
+	return sites
+}
+
+func registraLog(site string, status bool) {
+	arquivo, err := os.OpenFile("log.txt", os.O_RDWR | os.O_CREATE | os.O_APPEND , 0666);
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	arquivo.WriteString(time.Now().Format("02/01/2006 - 15:04:05")+ " - " + site + " - online: " + strconv.FormatBool(status) + "\n")
+
+	arquivo.Close()
+}
+
+func imprimeLogs() {
+	arquivo, err := ioutil.ReadFile("log.txt")
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println(string(arquivo))
 }
