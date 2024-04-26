@@ -4,7 +4,47 @@
 
 https://github.com/google/uuid
 
-## Install 
+## Inicializar o modulo uuid
 
-go get github.com/google/uuid
+```bash
+go mod init github.com/codeedu/myuuid
+```
 
+## Install
+
+Instala pacotes de binários
+
+```bash
+go get github.com/google/uuid@latest
+```
+a partir da versão 1.16 usar o `go install`
+
+## Executando
+
+```bash
+go run main.go
+    917137d5-74a7-4edc-92c6-9cdbbae41db9
+```
+
+## Verificando os módulos
+
+```bash
+go mod tidy
+```
+
+## Verificando as dependências
+
+```bash
+go mod graph
+    github.com/codeedu/myuuid github.com/google/uuid@v1.6.0
+    github.com/codeedu/myuuid go@1.22.2
+    go@1.22.2 toolchain@go1.22.2
+```
+
+# Vendor
+
+Deixa as dependências/módulos isolados no projeto
+
+```bash
+go mod vendor
+```
