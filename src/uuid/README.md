@@ -12,12 +12,16 @@ go mod init github.com/codeedu/myuuid
 
 ## Install
 
-Instala pacotes de binários
+Instala pacotes e binários
 
 ```bash
 go get github.com/google/uuid@latest
 ```
 a partir da versão 1.16 usar o `go install`
+
+```bash
+go install github.com/google/uuid@latest
+```
 
 ## Executando
 
@@ -41,7 +45,7 @@ go mod graph
     go@1.22.2 toolchain@go1.22.2
 ```
 
-# Vendor
+## Vendor
 
 Deixa as dependências/módulos isolados no projeto
 
