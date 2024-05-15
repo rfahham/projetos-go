@@ -1,12 +1,14 @@
 # GO
 
+Linguagem de programação criada pelo google em 2006.
+
 ## Instalando
     https://golang.org/dl/
     Fazer o Download do respectivo Sistema Operacional
 
 ## Saber a versão
     go version
-    go version go1.18.1 darwin/amd64
+    go version go1.22.2 linux/amd64
 
 ## Criando o Go Workspace
     mkdir go
