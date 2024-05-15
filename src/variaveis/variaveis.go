@@ -38,8 +38,8 @@ func main() {
 	total_less := primeiro_numero - segundo_numero
 	total_times := primeiro_numero * segundo_numero
 	total_divide := primeiro_numero / segundo_numero
-	idade, ano := 51, 1971
-	versao := 1.1
+	idade, ano := 53, 1971
+	versao := 1.22
 	nome := "Fahham"
 
 
@@ -50,8 +50,8 @@ func main() {
 	fmt.Println("A divisão de", primeiro_numero, "/", segundo_numero, "=", total_divide)
 	fmt.Println("Tenho", idade, "anos, nasci em", ano)
 	fmt.Println("Este programa está na versão:", versao)
-	fmt.Println("Meu nome é ", nome)
-	fmt.Println("O tipo da variável nome é ", reflect.TypeOf(nome))
+	fmt.Println("Meu nome é", nome)
+	fmt.Println("O tipo da variável nome é", reflect.TypeOf(nome))
 
 	fmt.Println("")
 }
