@@ -10,7 +10,7 @@ func main() {
 }
 
 func nomeIdade() (string, int) {
-	nome := "Ricardo"
-	idade := 51
+	nome := "Ricardo Fahham"
+	idade := 53
 	return nome, idade
 }
