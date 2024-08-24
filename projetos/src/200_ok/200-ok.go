@@ -47,7 +47,7 @@ func exibeMenu() {
 	fmt.Println("")
 	fmt.Println("Programa para separar urls pelo seu Status Code.")
 	fmt.Println("")
-	fmt.Println("Os arquivos que serão testados estão no arquivo lista.csv")
+	fmt.Println("As URLs que serão testados estão no arquivo lista.csv")
 	fmt.Println("")
 	fmt.Println("Escolha uma das opções abaixo:")
 	fmt.Println("")

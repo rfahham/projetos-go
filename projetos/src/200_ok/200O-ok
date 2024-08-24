@@ -17,7 +17,7 @@ func main() {
 		destino string
 	)
 
-	flag.StringVar(&urlHost, "url", "", "url completa. exemplo: http://globoesporte.qa02.globoi.com/")
+	flag.StringVar(&urlHost, "url", "", "url completa. exemplo: https://globo.com/")
 	flag.StringVar(&origem, "orig", "./origem.txt", "caminho do arquivo de origem")
 	flag.StringVar(&destino, "dst", "./destino.txt", "caminho do arquivo de destino")
 
