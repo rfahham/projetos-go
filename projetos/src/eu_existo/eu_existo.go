@@ -6,7 +6,7 @@ func main() {
 
 	var nome = "Ricardo Fahham"
 	var anoNascimento = 1971
-	var anoAtual = 2018
+	var anoAtual = 2024
 
 	fmt.Println("Meu nome é", nome, "e eu tenho", anoAtual-anoNascimento, "anos.")
 
